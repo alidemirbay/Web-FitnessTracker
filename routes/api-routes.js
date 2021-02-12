@@ -15,3 +15,17 @@ router.post("/api/workouts", (req, res) => {
         catch(err => { res.json(err); });
 });
 
+router.put('/api/workouts/:id', (req, res) => {
+    const newExercise = req.body;
+    Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: newExercise } })
+        .then(data => { res.json(data); })
+        .catch(err => { res.json(err); });
+})
+
+router.get("/api/workouts/range", (req, res) => {
+    Workout.find({}).limit(7)
+        .then(data => { res.json(data); })
+        .catch(err => { res.json(err); });
+});
+
+module.exports = router; 
