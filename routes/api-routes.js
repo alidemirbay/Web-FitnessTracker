@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const db = require("../models");
-// const db = require("../models");
 
 router.get("/api/workouts", (req, res) => {
     db.Workout.find({})
@@ -9,7 +8,7 @@ router.get("/api/workouts", (req, res) => {
 });
 
 router.post("/api/workouts", (req, res) => {
-    const newWorkout = { day: Date.now(), exercises: [req.body] }
+    // const newWorkout = { day: Date.now(), exercises: [req.body] }
     db.Workout.create(req.body)
         .then(data => { res.json(data); })
         .catch(err => { res.json(err); });
